@@ -231,7 +231,13 @@ begin
 	DECODER_TERMOMETRICO: decodtermo port map(X, LEDR150);
 	LEDR <= LEDR150 and not(E1);
 	
-	-- REGISTRADOR USER
+	-- REGISTRADORES
 
-	REG_USER: registrador16 port map(clk, R2, E2, SW(15 donwto 0));
+	REG_USER: registrador16 port map(clk, R2, E2, SW(15 donwto 0), USER);
+	
+	REG_SEL: registrador6 port map(clk, R2, E1, SW(5 donwto 0), SEL);
+	
+	REG_P_REG: registrador3 port map(clk, R2, E4, P, P_REG);
+	
+	REG_E_REG: registrador3 port map(clk, R2, R4, E, E_REG);
 end arqdtp;
