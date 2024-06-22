@@ -1,0 +1,19 @@
+library ieee;
+use IEEE.Std_Logic_1164.all;
+
+entity mux41 is
+port(
+	SEL_MUX: in std_logic_vector(1 downto 0);
+	E0, E1, E2, E3: in std_logic_vector(6 downto 0);
+	S: out std_logic_vector(6 downto 0)
+);
+end mux41;
+
+architecture mu4 of mux41 is
+begin
+	with SEL_MUX select
+		S <= 	E0 when "00",
+				E1 when "01",
+				E2 when "10",
+				E3 when others;
+end mu4;
