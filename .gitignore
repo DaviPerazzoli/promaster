@@ -3,3 +3,4 @@
 *.qsf
 *.qws
 *.flock
+db\*

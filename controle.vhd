@@ -30,8 +30,75 @@ begin
 								 E4<= '0';
 								 E5<= '0';
 								 PE <= SETUP;
-								 
-			  -- A fazer pelo aluno
+				-- A fazer pelo aluno
+				
+				when SETUP => 	R1 <= '0';
+									R2 <= '0';
+									E1 <= '1';
+									E2 <= '0';
+									E3 <= '0';
+									E4 <= '0';
+									E5 <= '0';
+									if K1 = '1' then
+										PE <= PLAY;
+									end if;
+									
+				when PLAY => 	R1 <= '0';
+									R2 <= '0';
+									E1 <= '0';
+									E2 <= '1';
+									E3 <= '0';
+									E4 <= '0';
+									E5 <= '0';
+									if endtime = '1' then
+										PE <= RESULT;
+									elsif K1 = '1' then
+										PE <= COUNTROUND;
+									end if;
+									
+				when COUNTROUND => 	R1 <= '0';
+											R2 <= '0';
+											E1 <= '0';
+											E2 <= '0';
+											E3 <= '1';
+											E4 <= '0';
+											E5 <= '0';
+											PE <= CHECK;
+											
+				when CHECK => 	R1 <= '0';
+									R2 <= '0';
+									E1 <= '0';
+									E2 <= '0';
+									E3 <= '0';
+									E4 <= '0';
+									E5 <= '0';
+									if endround = '1' or endgame = '1' then
+										PE <= RESULT;
+									else PE <= W;
+									end if;
+									
+				when W => 		R1 <= '1';
+									R2 <= '0';
+									E1 <= '0';
+									E2 <= '0';
+									E3 <= '0';
+									E4 <= '0';
+									E5 <= '0';
+									if K1 = '1' then
+										PE <= PLAY;
+									end if;
+									
+				when RESULT => R1 <= '0';
+									R2 <= '0';
+									E1 <= '0';
+									E2 <= '0';
+									E3 <= '0';
+									E4 <= '0';
+									E5 <= '1';
+									if K1 = '1' then
+										PE <= INIT;
+									end if;
+			  
 							  
 		end case;
 	end process;
