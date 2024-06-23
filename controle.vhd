@@ -8,7 +8,7 @@ end controle;
 
 architecture bhv of controle is
 	type STATES is (W,INIT,SETUP,PLAY,COUNTROUND,CHECK,RESULT);
-	signal EA, PE: STATES;
+	signal EA, PE: STATES := INIT;
 begin
 	P1: process(clock,K0)
 	begin
@@ -30,7 +30,6 @@ begin
 								 E4<= '0';
 								 E5<= '0';
 								 PE <= SETUP;
-				-- A fazer pelo aluno
 				
 				when SETUP => 	R1 <= '0';
 									R2 <= '0';
@@ -98,8 +97,6 @@ begin
 									if K1 = '1' then
 										PE <= INIT;
 									end if;
-			  
-							  
 		end case;
 	end process;
 end bhv;
