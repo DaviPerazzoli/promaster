@@ -9,14 +9,14 @@ CLOCK_50:in std_logic;
 --RKEY:in std_logic_vector(3 downto 0);
 KEY:in std_logic_vector(3 downto 0);
 --RSW:in std_logic_vector(17 downto 0);
-SW:in std_logic_vector(17 downto 0);
-LEDR:out std_logic_vector(17 downto 0);
+SW:in std_logic_vector(15 downto 0);
+LEDR:out std_logic_vector(15 downto 0);
 HEX0,HEX1,HEX2,HEX3,HEX4,HEX5,HEX6,HEX7: out std_logic_vector(6
 downto 0));
 end promaster;
 
 architecture circuito of promaster is
-signal R1,R2,E1,E2,E3,E4,E5,end_game,end_time,end_round,Enter,Reset:std_logic;
+	signal R1,R2,E1,E2,E3,E4,E5,end_game,end_time,end_round,Enter,Reset:std_logic;
 
 	component datapath is 
 	port (S: in std_logic_vector(15 downto 0); -- dos switches
@@ -38,8 +38,8 @@ signal R1,R2,E1,E2,E3,E4,E5,end_game,end_time,end_round,Enter,Reset:std_logic;
 	end component;
 	
 	begin	
-	BOT: ButtonSync port map (KEY(0),KEY(1),CLOCK_50,Enter, Reset); --CLK??
-	DATA: datapath port map (SW(15 downto 0),CLOCK_50,R1,R2,E1,E2,E3,E4,E5,end_game, end_time, end_round,HEX7,HEX6,HEX5,HEX4,HEX3,HEX2,HEX1,HEX0,LEDR(15 downto 0));
-	CTRL: controle port map (CLOCK_50,Enter, Reset,end_time,end_game, end_round, R1,R2,E1,E2,E3,E4,E5);	
+		BOT: ButtonSync port map (KEY(0),KEY(1),CLOCK_50,Enter, Reset); --CLK??
+		DATA: datapath port map (SW(15 downto 0),CLOCK_50,R1,R2,E1,E2,E3,E4,E5,end_game, end_time, end_round,HEX7,HEX6,HEX5,HEX4,HEX3,HEX2,HEX1,HEX0,LEDR(15 downto 0));
+		CTRL: controle port map (CLOCK_50,Enter, Reset,end_time,end_game, end_round, R1,R2,E1,E2,E3,E4,E5);	
 	
-	end circuito;	
+end circuito;	
