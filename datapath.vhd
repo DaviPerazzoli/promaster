@@ -61,7 +61,7 @@ port(address : in  std_logic_vector(3 downto 0);
 end component;
 
 component registrador16 is 
-port (CLK, RST, EN: in std_logic; 
+port (CLK, RST, EN: in std_logic;
 		D: in std_logic_vector(15 downto 0); 
 		Q: out std_logic_vector(15 downto 0)); 
 end component;
@@ -207,7 +207,7 @@ begin
 	
 	DEC_M3_1: decod7seg port map(USER(15 downto 12), D);
 	DEC_M3_3: decod7seg port map(CODE(15 downto 12), E_m);
-	MUX_3: multiplexador74 port map("0111001", D, "1110011", E_m, SEL_MUX, HEX3);
+	MUX_3: multiplexador74 port map("1000110", D, "0001100", E_m, SEL_MUX, HEX3);
 	
 	DEC_M2_0: decod7seg port map(SEL(5 downto 2), F_m);
 	DEC_M2_1: decod7seg port map(USER(11 downto 8), G);
@@ -217,7 +217,7 @@ begin
 	
 	DEC_M1_1: decod7seg port map(USER(7 downto 4), J);
 	DEC_M1_3: decod7seg port map(CODE(7 downto 4), L);
-	MUX_1: multiplexador74 port map("0111000", J, "1111001", L, SEL_MUX, HEX1);
+	MUX_1: multiplexador74 port map("1000111", J, "0000110", L, SEL_MUX, HEX1);
 	
 	DEC_M0_0: decod7seg port map(SEL_4, M);
 	DEC_M0_1: decod7seg port map(USER(3 downto 0), N);

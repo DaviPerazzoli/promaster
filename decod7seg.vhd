@@ -9,7 +9,7 @@ end decod7seg;
 architecture dec of decod7seg is
 begin
 	with G select
-		S <= 	"1000000" when "0000", 
+		S <= 	"1000000" when "0000",
 				"1111001" when "0001", 
 				"0100100" when "0010", 
 				"0110000" when "0011",

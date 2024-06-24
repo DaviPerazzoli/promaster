@@ -11,7 +11,7 @@ architecture behv of registrador6 is
 begin
     process(CLK, RST)
     begin
-        if RST = '0' then 
+        if RST = '1' then 
             Q <= "000000";
         elsif (CLK'event and CLK = '1') then 
             if EN = '1' then
