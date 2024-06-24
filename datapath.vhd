@@ -19,7 +19,7 @@ signal P,P_REG,E,E_REG,v0,v1,v2,v3: std_logic_vector(2 downto 0);
 signal SW50,SEL: std_logic_vector(5 downto 0);
 signal SW150,USER,CODE,LEDR150,Z,m0,m1,m2,m3: std_logic_vector(15 downto 0);
 signal A,B,C,D,V,F,G,H,I,J,K,L,M,N,O,ma,mb,mc,md,me,mf,mg,mh,t: std_logic_vector(6 downto 0);
-signal clk1,rst_divfreq,endgame,endtime: std_logic;
+signal c_0,c_1,c_2,c_3,clk1,rst_divfreq,endgame,endtime: std_logic;
 
 component somadormenor is
 port (A: in  std_logic_vector(3 downto 0);
@@ -140,9 +140,10 @@ PORT (P: IN STD_LOGIC_VECTOR(2 DOWNTO 0) ;
 		Peq4: OUT STD_LOGIC ) ;
 END component;
 
-component comp_n is 
-port(c, u: in  std_logic_vector(3 downto 0);
-     P0: out std_logic_vector(2 downto 0));
+component COMP is
+    Port ( A : in STD_LOGIC_VECTOR (3 downto 0);
+           B : in STD_LOGIC_VECTOR (3 downto 0);
+           E : out STD_LOGIC);
 end component;
 
 component comp_e is 
@@ -176,14 +177,14 @@ begin
 	SELEC: selector port map (E1,E2,R1,E5,SEL_MUX);
 	COMPE: comp_e port map (CODE,USER,E);
 	
-	-- A fazer pelo aluno
+	-- Alguns sinais importantes
 	
 	RESULT <= "000" & end_game & F;
 	P_REG_4 <= '0' & P_REG(2 downto 0);
 	SEL_4 <= "00" & SEL(1 donwto 0);
 	E_REG_4 <= '0' & E_REG(2 donwto 0);
 	
-	-- SOMADOR MENOR COM end_time
+	-- SOMADOR MENOR com end_time
 	
 	SOMA: somadormenor port map(X, "0001", SOMA_X_1);
 	F <= not(end_time) and not(SOMA_X_1)
@@ -240,4 +241,24 @@ begin
 	REG_P_REG: registrador3 port map(clk, R2, E4, P, P_REG);
 	
 	REG_E_REG: registrador3 port map(clk, R2, R4, E, E_REG);
+	
+	-- Comparadores e somador maior
+	
+	COMP_0: COMP port map(CODE(3 donwto 0), USER(3 donwto 0), c_0);
+	COMP_1: COMP port map(CODE(7 donwto 4), USER(7 donwto 4), c_1);
+	COMP_2: COMP port map(CODE(11 donwto 8), USER(11 donwto 8), c_2);
+	COMP_3: COMP port map(CODE(15 donwto 12), USER(15 donwto 12), c_3);
+	
+	SOMA_P: somadormaior port map(c_0,c_1,c_2,c_3, P);
+	
+	COMP_4: comp4 port map(P, end_game);
+	
+	-- ROMS com MUX
+	
+	ROM_0: ROM0 port map(SEL(5 donwto 2), m0);
+	ROM_1: ROM1 port map(SEL(5 donwto 2), m1);
+	ROM_2: ROM2 port map(SEL(5 donwto 2), m2);
+	ROM_3: ROM3 port map(SEL(5 donwto 2), m3);
+	MUX_CODE: multiplexador16 port map(m0, m1, m2, m3, SEL(1 downto 0), CODE);
+	
 end arqdtp;
