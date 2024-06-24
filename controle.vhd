@@ -40,6 +40,8 @@ begin
 									E5 <= '0';
 									if K1 = '1' then
 										PE <= PLAY;
+									else
+										PE <= SETUP;
 									end if;
 									
 				when PLAY => 	R1 <= '0';
@@ -53,6 +55,8 @@ begin
 										PE <= RESULT;
 									elsif K1 = '1' then
 										PE <= COUNTROUND;
+									else
+										PE <= PLAY;
 									end if;
 									
 				when COUNTROUND => 	R1 <= '0';
@@ -73,7 +77,8 @@ begin
 									E5 <= '0';
 									if endround = '1' or endgame = '1' then
 										PE <= RESULT;
-									else PE <= W;
+									else 
+										PE <= W;
 									end if;
 									
 				when W => 		R1 <= '1';
@@ -85,6 +90,8 @@ begin
 									E5 <= '0';
 									if K1 = '1' then
 										PE <= PLAY;
+									else
+										PE <= W;
 									end if;
 									
 				when RESULT => R1 <= '0';
@@ -96,6 +103,8 @@ begin
 									E5 <= '1';
 									if K1 = '1' then
 										PE <= INIT;
+									else
+										PE <= RESULT;
 									end if;
 		end case;
 	end process;
