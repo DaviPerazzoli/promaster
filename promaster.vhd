@@ -23,7 +23,7 @@ architecture circuito of promaster is
       clk,R1,R2,E1,E2,E3,E4,E5: in std_logic;
       end_game, end_time, end_round: out std_logic;
 		HEX7,HEX6,HEX5,HEX4,HEX3,HEX2,HEX1,HEX0: out std_logic_vector(6 downto 0);
-		LED:out std_logic_vector(15 downto 0));
+		LEDR:out std_logic_vector(15 downto 0));
 	end component;
 	
 	component controle is 

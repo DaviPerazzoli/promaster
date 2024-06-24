@@ -13,12 +13,12 @@ end datapath;
 
 architecture arqdtp of datapath is
 signal SEL_MUX: std_logic_vector(1 downto 0);
-signal SOMA_X_1,P_REG_4,SEL_4,E_REG_4,Y,temp,X,Xb,Q,Q1,PREG,EREG,SELECC: std_logic_vector(3 downto 0);
+signal F, endtime_4,SOMA_X_1,P_REG_4,SEL_4,E_REG_4,Y,temp,X,Xb,Q,Q1,PREG,EREG,SELECC: std_logic_vector(3 downto 0);
 signal RESULT: std_logic_vector(7 downto 0);
 signal P,P_REG,E,E_REG,v0,v1,v2,v3: std_logic_vector(2 downto 0);
 signal SW50,SEL: std_logic_vector(5 downto 0);
-signal SW150,USER,CODE,LEDR150,Z,m0,m1,m2,m3: std_logic_vector(15 downto 0);
-signal A,B,C,D,V,F,G,H,I,J,K,L,M,N,O,ma,mb,mc,md,me,mf,mg,mh,t: std_logic_vector(6 downto 0);
+signal E1_16, SW150,USER,CODE,LEDR150,Z,m0,m1,m2,m3: std_logic_vector(15 downto 0);
+signal A,B,C,D,V,E_m,F_m,G,H,I,J,K,L,M,N,O,ma,mb,mc,md,me,mf,mg,mh,t: std_logic_vector(6 downto 0);
 signal c_0,c_1,c_2,c_3,clk1,rst_divfreq,endgame,endtime: std_logic;
 
 component somadormenor is
@@ -28,11 +28,11 @@ port (A: in  std_logic_vector(3 downto 0);
 end component;
 
 component somadormaior is
-port (A: in  std_logic_vector(2 downto 0);
-		B: in  std_logic_vector(2 downto 0);
-		C: in  std_logic_vector(2 downto 0);
-		D: in  std_logic_vector(2 downto 0);
-		F: out  std_logic_vector(2 downto 0));
+Port ( P0 : in STD_LOGIC;
+           P1 : in STD_LOGIC;
+           P2 : in STD_LOGIC;
+           P3 : in STD_LOGIC;
+           P : out STD_LOGIC_VECTOR (2 downto 0));
 end component;
 
 component selector is 
@@ -179,15 +179,18 @@ begin
 	
 	-- Alguns sinais importantes
 	
-	RESULT <= "000" & end_game & F;
+	RESULT <= "000" & endgame & F;
 	P_REG_4 <= '0' & P_REG(2 downto 0);
 	SEL_4 <= "00" & SEL(1 downto 0);
 	E_REG_4 <= '0' & E_REG(2 downto 0);
-	
+	end_game <= endgame;
+	end_time <= endtime;
+	E1_16 <= "000000000000000" & E1;
 	-- SOMADOR MENOR com end_time
 	
 	SOMA: somadormenor port map(X, "0001", SOMA_X_1);
-	F <= not(end_time) and not(SOMA_X_1);
+	endtime_4 <= "000" & endtime;
+	F <= not(endtime_4) and not(SOMA_X_1);
 	
 	-- Decodificadores e seus multiplexadores
 	
@@ -203,14 +206,14 @@ begin
 	MUX_4: multiplexador72 port map("1111111", C, E2, HEX4);
 	
 	DEC_M3_1: decod7seg port map(USER(15 downto 12), D);
-	DEC_M3_3: decod7seg port map(CODE(15 downto 12), E);
-	MUX_3: multiplexador74 port map("0111001", D, "1110011", E, SEL_MUX, HEX3);
+	DEC_M3_3: decod7seg port map(CODE(15 downto 12), E_m);
+	MUX_3: multiplexador74 port map("0111001", D, "1110011", E_m, SEL_MUX, HEX3);
 	
-	DEC_M2_0: decod7seg port map(SEL(5 downto 2), F);
+	DEC_M2_0: decod7seg port map(SEL(5 downto 2), F_m);
 	DEC_M2_1: decod7seg port map(USER(11 downto 8), G);
 	DEC_M2_2: decod7seg port map(P_REG_4, H);
 	DEC_M2_3: decod7seg port map(CODE(11 downto 8), I);
-	MUX_2: multiplexador74 port map(F, G, H, I, SEL_MUX, HEX2);
+	MUX_2: multiplexador74 port map(F_m, G, H, I, SEL_MUX, HEX2);
 	
 	DEC_M1_1: decod7seg port map(USER(7 downto 4), J);
 	DEC_M1_3: decod7seg port map(CODE(7 downto 4), L);
@@ -224,23 +227,23 @@ begin
 	
 	-- contador de tempo do round
 	
-	COUNT_TIME: counter_time port map(R1, clk1, E2, temp, end_time);
+	COUNT_TIME: counter_time port map(R1, clk1, E2, temp, endtime);
 	
 	-- contador dos rounds e decoder termometrico
 	
 	COUNT_ROUND: counter_round port map(R2, clk, E3, end_round, X);
 	DECODER_TERMOMETRICO: decodtermo port map(X, LEDR150);
-	LEDR <= LEDR150 and not(E1);
+	LEDR <= LEDR150 and not(E1_16);
 	
 	-- REGISTRADORES
 
-	REG_USER: registrador16 port map(clk, R2, E2, SW(15 downto 0), USER);
+	REG_USER: registrador16 port map(clk, R2, E2, S(15 downto 0), USER);
 	
-	REG_SEL: registrador6 port map(clk, R2, E1, SW(5 downto 0), SEL);
+	REG_SEL: registrador6 port map(clk, R2, E1, S(5 downto 0), SEL);
 	
 	REG_P_REG: registrador3 port map(clk, R2, E4, P, P_REG);
 	
-	REG_E_REG: registrador3 port map(clk, R2, R4, E, E_REG);
+	REG_E_REG: registrador3 port map(clk, R2, E4, E, E_REG);
 	
 	-- Comparadores e somador maior
 	
@@ -251,7 +254,7 @@ begin
 	
 	SOMA_P: somadormaior port map(c_0,c_1,c_2,c_3, P);
 	
-	COMP_4: comp4 port map(P, end_game);
+	COMP_4: comp4 port map(P, endgame);
 	
 	-- ROMS com MUX
 	
