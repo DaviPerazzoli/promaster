@@ -1,5 +1,5 @@
 Analysis & Synthesis report for promaster
-Wed Jun 19 16:36:20 2024
+Mon Jun 24 13:58:52 2024
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                             ;
 +-----------------------------+--------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Wed Jun 19 16:36:20 2024          ;
+; Analysis & Synthesis Status ; Failed - Mon Jun 24 13:58:52 2024          ;
 ; Quartus II 64-Bit Version   ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name               ; promaster                                  ;
 ; Top-level Entity Name       ; promaster                                  ;
@@ -155,9 +155,30 @@ Parallel compilation was disabled, but you have multiple processors available. E
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Wed Jun 19 16:36:17 2024
+    Info: Processing started: Mon Jun 24 13:58:52 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off promaster -c promaster
 Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file rom3.vhd
+    Info (12022): Found design unit 1: ROM3-Rom_Arch
+    Info (12023): Found entity 1: ROM3
+Info (12021): Found 2 design units, including 1 entities, in source file rom2.vhd
+    Info (12022): Found design unit 1: ROM2-Rom_Arch
+    Info (12023): Found entity 1: ROM2
+Info (12021): Found 2 design units, including 1 entities, in source file rom1.vhd
+    Info (12022): Found design unit 1: ROM1-Rom_Arch
+    Info (12023): Found entity 1: ROM1
+Info (12021): Found 2 design units, including 1 entities, in source file somadormaior.vhd
+    Info (12022): Found design unit 1: somadormaior-Behavioral
+    Info (12023): Found entity 1: somadormaior
+Info (12021): Found 2 design units, including 1 entities, in source file comp.vhd
+    Info (12022): Found design unit 1: COMP-Behavioral
+    Info (12023): Found entity 1: COMP
+Info (12021): Found 2 design units, including 1 entities, in source file registrador16.vhd
+    Info (12022): Found design unit 1: registrador16-behv
+    Info (12023): Found entity 1: registrador16
+Info (12021): Found 2 design units, including 1 entities, in source file registrador6.vhd
+    Info (12022): Found design unit 1: registrador6-behv
+    Info (12023): Found entity 1: registrador6
 Info (12021): Found 2 design units, including 1 entities, in source file selector.vhd
     Info (12022): Found design unit 1: selector-arc_selector
     Info (12023): Found entity 1: selector
@@ -185,47 +206,41 @@ Info (12021): Found 2 design units, including 1 entities, in source file comp_e.
 Info (12021): Found 2 design units, including 1 entities, in source file buttonsync.vhd
     Info (12022): Found design unit 1: ButtonSync-ButtonSyncImpl
     Info (12023): Found entity 1: ButtonSync
-Info (12021): Found 2 design units, including 1 entities, in source file dec7seg.vhd
-    Info (12022): Found design unit 1: dec7seg-dec
-    Info (12023): Found entity 1: dec7seg
-Warning (12090): Entity "mux41" obtained from "mux41.vhd" instead of from Quartus II megafunction library
-Info (12021): Found 2 design units, including 1 entities, in source file mux41.vhd
-    Info (12022): Found design unit 1: mux41-mu4
-    Info (12023): Found entity 1: mux41
-Info (12021): Found 2 design units, including 1 entities, in source file mux21.vhd
-    Info (12022): Found design unit 1: mux21-mu2
-    Info (12023): Found entity 1: mux21
-Info (12127): Elaborating entity "promaster" for the top level hierarchy
-Warning (10873): Using initial value X (don't care) for net "LEDR[17..16]" at promaster.vhd(13)
-Info (12128): Elaborating entity "ButtonSync" for hierarchy "ButtonSync:BOT"
-Info (12128): Elaborating entity "datapath" for hierarchy "datapath:DATA"
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(9): used implicit default value for signal "end_game" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(9): used implicit default value for signal "end_time" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(9): used implicit default value for signal "end_round" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(10): used implicit default value for signal "HEX7" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(10): used implicit default value for signal "HEX6" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(10): used implicit default value for signal "HEX5" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(10): used implicit default value for signal "HEX4" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(10): used implicit default value for signal "HEX3" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(10): used implicit default value for signal "HEX2" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(10): used implicit default value for signal "HEX1" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(10): used implicit default value for signal "HEX0" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(11): used implicit default value for signal "LED" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at datapath.vhd(15): object "SEL_MUX" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at datapath.vhd(18): object "E" assigned a value but never read
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(20): used implicit default value for signal "USER" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at datapath.vhd(20): used implicit default value for signal "CODE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at datapath.vhd(22): object "clk1" assigned a value but never read
-Info (12128): Elaborating entity "Div_Freq_DE2" for hierarchy "datapath:DATA|Div_Freq_DE2:DIVFREQ"
-Info (12128): Elaborating entity "selector" for hierarchy "datapath:DATA|selector:SELEC"
-Info (12128): Elaborating entity "comp_e" for hierarchy "datapath:DATA|comp_e:COMPE"
-Info (12128): Elaborating entity "controle" for hierarchy "controle:CTRL"
-Error (10313): VHDL Case Statement error at controle.vhd(24): Case Statement choices must cover all possible values of expression File: C:/altera/13.1/mastermind/controle.vhd Line: 24
-Error (12152): Can't elaborate user hierarchy "controle:CTRL" File: C:/altera/13.1/mastermind/promaster.vhd Line: 43
-Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 2 errors, 20 warnings
+Info (12021): Found 2 design units, including 1 entities, in source file multiplexador72.vhd
+    Info (12022): Found design unit 1: multiplexador72-mu2
+    Info (12023): Found entity 1: multiplexador72
+Info (12021): Found 2 design units, including 1 entities, in source file multiplexador74.vhd
+    Info (12022): Found design unit 1: multiplexador74-mu4
+    Info (12023): Found entity 1: multiplexador74
+Info (12021): Found 2 design units, including 1 entities, in source file decod7seg.vhd
+    Info (12022): Found design unit 1: decod7seg-dec
+    Info (12023): Found entity 1: decod7seg
+Info (12021): Found 2 design units, including 1 entities, in source file multiplexador16.vhd
+    Info (12022): Found design unit 1: multiplexador16-mu16
+    Info (12023): Found entity 1: multiplexador16
+Info (12021): Found 2 design units, including 1 entities, in source file counter_time.vhd
+    Info (12022): Found design unit 1: counter_time-bhv
+    Info (12023): Found entity 1: counter_time
+Info (12021): Found 2 design units, including 1 entities, in source file somadormenor.vhd
+    Info (12022): Found design unit 1: somadormenor-soma
+    Info (12023): Found entity 1: somadormenor
+Info (12021): Found 2 design units, including 1 entities, in source file counter_round.vhd
+    Info (12022): Found design unit 1: counter_round-bhv
+    Info (12023): Found entity 1: counter_round
+Info (12021): Found 2 design units, including 1 entities, in source file decodtermo.vhd
+    Info (12022): Found design unit 1: decodtermo-dec
+    Info (12023): Found entity 1: decodtermo
+Info (12021): Found 2 design units, including 1 entities, in source file registrador3.vhd
+    Info (12022): Found design unit 1: registrador3-behv
+    Info (12023): Found entity 1: registrador3
+Info (12021): Found 2 design units, including 1 entities, in source file comp4.vhd
+    Info (12022): Found design unit 1: comp4-Behavioral
+    Info (12023): Found entity 1: comp4
+Error (10309): VHDL Interface Declaration error in datapath.vhd(182): interface object "end_game" of mode out cannot be read. Change object mode to buffer. File: C:/Users/Tufic/Desktop/UFSC/Circuitos/promaster/datapath.vhd Line: 182
+Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 1 error, 1 warning
     Error: Peak virtual memory: 4695 megabytes
-    Error: Processing ended: Wed Jun 19 16:36:20 2024
-    Error: Elapsed time: 00:00:03
-    Error: Total CPU time (on all processors): 00:00:01
+    Error: Processing ended: Mon Jun 24 13:58:52 2024
+    Error: Elapsed time: 00:00:00
+    Error: Total CPU time (on all processors): 00:00:00
 
 

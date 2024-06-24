@@ -181,20 +181,20 @@ begin
 	
 	RESULT <= "000" & end_game & F;
 	P_REG_4 <= '0' & P_REG(2 downto 0);
-	SEL_4 <= "00" & SEL(1 donwto 0);
-	E_REG_4 <= '0' & E_REG(2 donwto 0);
+	SEL_4 <= "00" & SEL(1 downto 0);
+	E_REG_4 <= '0' & E_REG(2 downto 0);
 	
 	-- SOMADOR MENOR com end_time
 	
 	SOMA: somadormenor port map(X, "0001", SOMA_X_1);
-	F <= not(end_time) and not(SOMA_X_1)
+	F <= not(end_time) and not(SOMA_X_1);
 	
 	-- Decodificadores e seus multiplexadores
 	
-	DEC_M7_1: decod7seg port map(RESULT(7 donwto 4), A);
+	DEC_M7_1: decod7seg port map(RESULT(7 downto 4), A);
 	MUX_7: multiplexador72 port map("1111111", A, E5, HEX7);
 	
-	DEC_M6_1: decod7seg port map(RESULT(3 donwto 0), B);
+	DEC_M6_1: decod7seg port map(RESULT(3 downto 0), B);
 	MUX_6: multiplexador72 port map("1111111", B, E5, HEX6);
 	
 	MUX_5: multiplexador72 port map("1111111", "1111000", E2, HEX5);
@@ -202,24 +202,24 @@ begin
 	DEC_M4_1: decod7seg port map(temp, C);
 	MUX_4: multiplexador72 port map("1111111", C, E2, HEX4);
 	
-	DEC_M3_1: decod7seg port map(USER(15 donwto 12), D);
-	DEC_M3_3: decod7seg port map(CODE(15 donwto 12), E);
+	DEC_M3_1: decod7seg port map(USER(15 downto 12), D);
+	DEC_M3_3: decod7seg port map(CODE(15 downto 12), E);
 	MUX_3: multiplexador74 port map("0111001", D, "1110011", E, SEL_MUX, HEX3);
 	
-	DEC_M2_0: decod7seg port map(SEL(5 donwto 2), F);
-	DEC_M2_1: decod7seg port map(USER(11 donwto 8), G);
+	DEC_M2_0: decod7seg port map(SEL(5 downto 2), F);
+	DEC_M2_1: decod7seg port map(USER(11 downto 8), G);
 	DEC_M2_2: decod7seg port map(P_REG_4, H);
-	DEC_M2_3: decod7seg port map(CODE(11 donwto 8), I);
+	DEC_M2_3: decod7seg port map(CODE(11 downto 8), I);
 	MUX_2: multiplexador74 port map(F, G, H, I, SEL_MUX, HEX2);
 	
-	DEC_M1_1: decod7seg port map(USER(7 donwto 4), J);
-	DEC_M1_3: decod7seg port map(CODE(7 donwto 4), L);
+	DEC_M1_1: decod7seg port map(USER(7 downto 4), J);
+	DEC_M1_3: decod7seg port map(CODE(7 downto 4), L);
 	MUX_1: multiplexador74 port map("0111000", J, "1111001", L, SEL_MUX, HEX1);
 	
 	DEC_M0_0: decod7seg port map(SEL_4, M);
-	DEC_M0_1: decod7seg port map(USER(3 donwto 0), N);
+	DEC_M0_1: decod7seg port map(USER(3 downto 0), N);
 	DEC_M0_2: decod7seg port map(E_REG_4, O);
-	DEC_M0_3: decod7seg port map(CODE(3 donwto 0), ma);
+	DEC_M0_3: decod7seg port map(CODE(3 downto 0), ma);
 	MUX_0: multiplexador74 port map(M, N, O, ma, SEL_MUX, HEX0);
 	
 	-- contador de tempo do round
@@ -234,9 +234,9 @@ begin
 	
 	-- REGISTRADORES
 
-	REG_USER: registrador16 port map(clk, R2, E2, SW(15 donwto 0), USER);
+	REG_USER: registrador16 port map(clk, R2, E2, SW(15 downto 0), USER);
 	
-	REG_SEL: registrador6 port map(clk, R2, E1, SW(5 donwto 0), SEL);
+	REG_SEL: registrador6 port map(clk, R2, E1, SW(5 downto 0), SEL);
 	
 	REG_P_REG: registrador3 port map(clk, R2, E4, P, P_REG);
 	
@@ -244,10 +244,10 @@ begin
 	
 	-- Comparadores e somador maior
 	
-	COMP_0: COMP port map(CODE(3 donwto 0), USER(3 donwto 0), c_0);
-	COMP_1: COMP port map(CODE(7 donwto 4), USER(7 donwto 4), c_1);
-	COMP_2: COMP port map(CODE(11 donwto 8), USER(11 donwto 8), c_2);
-	COMP_3: COMP port map(CODE(15 donwto 12), USER(15 donwto 12), c_3);
+	COMP_0: COMP port map(CODE(3 downto 0), USER(3 downto 0), c_0);
+	COMP_1: COMP port map(CODE(7 downto 4), USER(7 downto 4), c_1);
+	COMP_2: COMP port map(CODE(11 downto 8), USER(11 downto 8), c_2);
+	COMP_3: COMP port map(CODE(15 downto 12), USER(15 downto 12), c_3);
 	
 	SOMA_P: somadormaior port map(c_0,c_1,c_2,c_3, P);
 	
@@ -255,10 +255,10 @@ begin
 	
 	-- ROMS com MUX
 	
-	ROM_0: ROM0 port map(SEL(5 donwto 2), m0);
-	ROM_1: ROM1 port map(SEL(5 donwto 2), m1);
-	ROM_2: ROM2 port map(SEL(5 donwto 2), m2);
-	ROM_3: ROM3 port map(SEL(5 donwto 2), m3);
+	ROM_0: ROM0 port map(SEL(5 downto 2), m0);
+	ROM_1: ROM1 port map(SEL(5 downto 2), m1);
+	ROM_2: ROM2 port map(SEL(5 downto 2), m2);
+	ROM_3: ROM3 port map(SEL(5 downto 2), m3);
 	MUX_CODE: multiplexador16 port map(m0, m1, m2, m3, SEL(1 downto 0), CODE);
 	
 end arqdtp;

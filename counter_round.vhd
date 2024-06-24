@@ -10,7 +10,7 @@ port(R: in std_logic;
 	  X : out std_logic_vector(3 downto 0));
 end counter_round;
 
-architecture bhv of counter_time is
+architecture bhv of counter_round is
 signal conta: std_logic_vector(3 downto 0);
 begin
 	P1: process(clock, R, E)

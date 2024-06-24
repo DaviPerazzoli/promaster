@@ -1,6 +1,8 @@
 *.bak
 *.db_info
 *.qsf
+*.qpf
 *.qws
 *.flock
-db\*
+db/
+output_files/

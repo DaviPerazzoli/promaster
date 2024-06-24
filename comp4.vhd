@@ -6,7 +6,7 @@ PORT (P: IN STD_LOGIC_VECTOR(2 DOWNTO 0) ;
 		Peq4: OUT STD_LOGIC ) ;
 END comp4;
 
-architecture Behavioral of COMP is
+architecture Behavioral of comp4 is
 begin
     process(P)
     begin
