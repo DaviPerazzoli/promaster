@@ -7,3 +7,5 @@
 db/
 output_files/
 /incremental_db
+c5_pin_model_dump.txt
+/hc_output
